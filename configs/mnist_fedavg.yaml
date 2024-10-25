@@ -1,0 +1,44 @@
+task: MNIST_FedAvg
+synthesizer: Pattern
+random_seed: 0
+
+
+batch_size: 64
+test_batch_size: 100
+lr: 0.001
+momentum: 0.9
+decay: 0.0005
+epochs: 350
+save_on_epochs: [100, 200, 300]
+optimizer: SGD
+log_interval: 100
+scheduler: False
+
+poisoning_proportion: 1
+backdoor_label: 8
+
+loss_balance: fixed
+fixed_scales: {'backdoor': 0.5, 'normal': 0.5}
+
+save_model: True
+log: True
+tb: True
+
+transform_train: True
+
+fl: True
+fl_no_models: 10
+fl_local_epochs: 2
+fl_total_participants: 10
+fl_eta: 1
+fl_q: 0.1
+# fl_dp_clip: 0.05
+# fl_dp_noise: 0.01
+fl_number_of_adversaries: 6
+fl_weight_scale: 1.6667
+
+# defense: krum
+
+loss_tasks:
+  - backdoor
+  - normal
